@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 2%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 6%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 4%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 51 100% 50%;
+        --primary-foreground: 0 0% 4%;
+        --secondary: 0 0% 10%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 12%;
+        --muted-foreground: 0 0% 64%;
+        --accent: 0 0% 10%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 72% 51%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 14%;
+        --input: 0 0% 14%;
+        --ring: 51 100% 50%;
+        --radius: 0rem;
+    }
+    * {
+        @apply border-border;
+    }
+    html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+        @apply bg-brand-ocean text-white font-mono;
+    }
+    ::selection {
+        @apply bg-brand-yellow text-black;
+    }
+    a:focus-visible,
+    button:focus-visible {
+        @apply outline-none ring-2 ring-brand-yellow ring-offset-2 ring-offset-brand-ocean;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #073b66;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #1a5a8a;
+        border: 2px solid #073b66;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ffde00;
+    }
+}
+
+@layer components {
+    .field {
+        @apply w-full border border-white/15 bg-black px-4 py-3.5 text-sm text-white placeholder:text-white/30 transition-colors focus:border-brand-yellow focus:outline-none focus:ring-1 focus:ring-brand-yellow;
+    }
+    .field-label {
+        @apply mb-2 block font-sans text-xs font-extrabold uppercase tracking-[0.2em] text-white/70;
+    }
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-3 border border-brand-yellow bg-brand-yellow px-7 py-4 font-sans text-sm font-extrabold uppercase tracking-[0.15em] text-black transition-colors hover:bg-transparent hover:text-brand-yellow;
+    }
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-3 border border-white/20 px-7 py-4 font-sans text-sm font-extrabold uppercase tracking-[0.15em] text-white transition-colors hover:border-brand-yellow hover:text-brand-yellow;
+    }
+    .eyebrow {
+        @apply flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.25em] text-white/60;
+    }
+    .eyebrow::before {
+        content: "";
+        @apply block h-2 w-2 bg-brand-yellow;
+    }
+    .text-outline {
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.22);
+    }
+}
+
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.marquee-track {
+    will-change: transform;
+    animation: marquee 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none;
+    }
+}
