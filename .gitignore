@@ -1,5 +1,12 @@
+node_modules/
+__pycache__/
+*.py[cod]
+venv/
+.venv/
 .env
 backend/.env
 frontend/.env
-node_modules/
-__pycache__/
+frontend/build/
+.firebase/
+*.log
+.DS_Store
